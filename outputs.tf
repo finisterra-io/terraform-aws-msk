@@ -72,4 +72,3 @@ output "latest_revision" {
   value       = one(aws_msk_configuration.config[*].latest_revision)
   description = "Latest revision of the MSK configuration"
 }
-
