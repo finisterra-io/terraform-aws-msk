@@ -55,31 +55,6 @@ variable "subnet_names" {
   default     = null
 }
 
-variable "zone_id" {
-  type        = string
-  description = "Route53 DNS Zone ID for MSK broker hostnames"
-  default     = null
-}
-
-variable "broker_dns_records_count" {
-  type        = number
-  description = <<-EOT
-  This variable specifies how many DNS records to create for the broker endpoints in the DNS zone provided in the `zone_id` variable.
-  This corresponds to the total number of broker endpoints created by the module.
-  Calculate this number by multiplying the `broker_per_zone` variable by the subnet count.
-  This variable is necessary to prevent the Terraform error:
-  The "count" value depends on resource attributes that cannot be determined until apply, so Terraform cannot predict how many instances will be created.
-  EOT
-  default     = 0
-  nullable    = false
-}
-
-variable "custom_broker_dns_name" {
-  type        = string
-  description = "Custom Route53 DNS hostname for MSK brokers. Use `%%ID%%` key to specify brokers index in the hostname. Example: `kafka-broker%%ID%%.example.com`"
-  default     = null
-}
-
 variable "client_broker" {
   type        = string
   default     = "TLS"
@@ -107,13 +82,6 @@ variable "enhanced_monitoring" {
   nullable    = false
 }
 
-variable "certificate_authority_arns" {
-  type        = list(string)
-  default     = []
-  description = "List of ACM Certificate Authority Amazon Resource Names (ARNs) to be used for TLS client authentication"
-  nullable    = false
-}
-
 variable "client_allow_unauthenticated" {
   type        = bool
   default     = false
@@ -125,20 +93,6 @@ variable "client_sasl_scram_enabled" {
   type        = bool
   default     = false
   description = "Enable SCRAM client authentication via AWS Secrets Manager. Cannot be set to `true` at the same time as `client_tls_auth_enabled`"
-  nullable    = false
-}
-
-variable "client_sasl_scram_secret_association_enabled" {
-  type        = bool
-  default     = true
-  description = "Enable the list of AWS Secrets Manager secret ARNs for SCRAM authentication"
-  nullable    = false
-}
-
-variable "client_sasl_scram_secret_association_arns" {
-  type        = list(string)
-  default     = []
-  description = "List of AWS Secrets Manager secret ARNs for SCRAM authentication"
   nullable    = false
 }
 
@@ -235,23 +189,10 @@ variable "storage_autoscaling_target_value" {
   description = "Percentage of storage used to trigger autoscaled storage increase"
 }
 
-variable "storage_autoscaling_max_capacity" {
-  type        = number
-  default     = null
-  description = "Maximum size the autoscaling policy can scale storage. Defaults to `broker_volume_size`"
-}
-
 variable "storage_autoscaling_disable_scale_in" {
   type        = bool
   default     = false
   description = "If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource"
-  nullable    = false
-}
-
-variable "security_group_rule_description" {
-  type        = string
-  default     = "Allow inbound %s traffic"
-  description = "The description to place on each security group rule. The %s will be replaced with the protocol name"
   nullable    = false
 }
 
@@ -334,12 +275,6 @@ variable "client_authentication" {
   default     = []
 }
 
-variable "client_authentication_sasl" {
-  type        = list(any)
-  description = "The client authentication sasl of the cluster"
-  default     = []
-}
-
 variable "config_kafka_versions" {
   type        = list(any)
   description = "The config kafka versions of the cluster"
@@ -369,4 +304,10 @@ variable "vpc_id" {
   type        = string
   description = "The ID of the VPC"
   default     = null
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to add to all resources"
+  default     = {}
 }
