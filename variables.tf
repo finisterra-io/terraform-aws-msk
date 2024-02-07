@@ -1,3 +1,9 @@
+variable "enabled" {
+  type        = bool
+  description = "Set to `true` to enable the MSK cluster"
+  default     = true
+}
+
 variable "cluster_name" {
   type        = string
   description = "The name of the MSK cluster"
@@ -344,4 +350,23 @@ variable "security_groups" {
   type        = list(any)
   description = "The security groups of the cluster"
   default     = []
+}
+
+
+variable "vpc_name" {
+  type        = string
+  description = "The name of the VPC"
+  default     = null
+}
+
+variable "security_group_name" {
+  type        = string
+  description = "The name of the security group"
+  default     = null
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "The ID of the VPC"
+  default     = null
 }
