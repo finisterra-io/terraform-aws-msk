@@ -12,11 +12,6 @@ resource "aws_msk_configuration" "config" {
   }
 }
 
-locals {
-  client_auth = (var.client_allow_unauthenticated || var.client_tls_auth_enabled || var.client_sasl_scram_enabled || var.client_sasl_iam_enabled) ? [1] : []
-}
-
-
 resource "aws_msk_cluster" "default" {
   count = var.enabled ? 1 : 0
 
@@ -144,7 +139,7 @@ resource "aws_msk_cluster" "default" {
     ]
   }
 
-  tags = module.this.tags
+  tags = var.tags
 }
 
 resource "aws_appautoscaling_target" "default" {

@@ -14,8 +14,3 @@ data "aws_subnet" "default" {
   }
 }
 
-data "aws_security_group" "default" {
-  count  = var.enabled && var.security_group_name != null ? 1 : 0
-  name   = var.security_group_name
-  vpc_id = var.vpc_name != null ? data.aws_vpc.default[0].id : var.vpc_id
-}
