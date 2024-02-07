@@ -1,8 +1,5 @@
-locals {
-  enabled = module.this.enabled
-}
 resource "aws_msk_configuration" "config" {
-  count = local.enabled && var.configuration_name != null ? 1 : 0
+  count = var.enabled && var.configuration_name != null ? 1 : 0
 
   kafka_versions = var.config_kafka_versions
   name           = var.configuration_name
@@ -21,7 +18,7 @@ locals {
 
 
 resource "aws_msk_cluster" "default" {
-  count = local.enabled ? 1 : 0
+  count = var.enabled ? 1 : 0
 
   cluster_name           = var.cluster_name
   kafka_version          = var.kafka_version
@@ -151,7 +148,7 @@ resource "aws_msk_cluster" "default" {
 }
 
 resource "aws_appautoscaling_target" "default" {
-  count = local.enabled && var.autoscaling_enabled ? 1 : 0
+  count = var.enabled && var.autoscaling_enabled ? 1 : 0
 
   max_capacity       = var.max_capacity
   min_capacity       = var.min_capacity
@@ -161,7 +158,7 @@ resource "aws_appautoscaling_target" "default" {
 }
 
 resource "aws_appautoscaling_policy" "default" {
-  count = local.enabled && var.autoscaling_enabled ? 1 : 0
+  count = var.enabled && var.autoscaling_enabled ? 1 : 0
 
   name               = var.appautoscaling_policy_name
   policy_type        = var.policy_type
