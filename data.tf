@@ -13,4 +13,3 @@ data "aws_subnet" "default" {
     values = [var.subnet_names[count.index]]
   }
 }
-
