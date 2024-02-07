@@ -82,34 +82,6 @@ variable "enhanced_monitoring" {
   nullable    = false
 }
 
-variable "client_allow_unauthenticated" {
-  type        = bool
-  default     = false
-  description = "Enable unauthenticated access"
-  nullable    = false
-}
-
-variable "client_sasl_scram_enabled" {
-  type        = bool
-  default     = false
-  description = "Enable SCRAM client authentication via AWS Secrets Manager. Cannot be set to `true` at the same time as `client_tls_auth_enabled`"
-  nullable    = false
-}
-
-variable "client_sasl_iam_enabled" {
-  type        = bool
-  default     = false
-  description = "Enable client authentication via IAM policies. Cannot be set to `true` at the same time as `client_tls_auth_enabled`"
-  nullable    = false
-}
-
-variable "client_tls_auth_enabled" {
-  type        = bool
-  default     = false
-  description = "Set `true` to enable the Client TLS Authentication"
-  nullable    = false
-}
-
 variable "jmx_exporter_enabled" {
   type        = bool
   default     = false
@@ -291,12 +263,6 @@ variable "security_groups" {
 variable "vpc_name" {
   type        = string
   description = "The name of the VPC"
-  default     = null
-}
-
-variable "security_group_name" {
-  type        = string
-  description = "The name of the security group"
   default     = null
 }
 
