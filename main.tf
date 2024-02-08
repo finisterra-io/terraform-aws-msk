@@ -150,6 +150,7 @@ resource "aws_appautoscaling_target" "default" {
   resource_id        = aws_msk_cluster.default[0].arn
   scalable_dimension = var.scalable_dimension
   service_namespace  = var.service_namespace
+  tags               = var.autoscalling_target_tags
 }
 
 resource "aws_appautoscaling_policy" "default" {

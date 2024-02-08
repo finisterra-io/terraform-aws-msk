@@ -277,3 +277,9 @@ variable "tags" {
   description = "A map of tags to add to all resources"
   default     = {}
 }
+
+variable "autoscalling_target_tags" {
+  type        = map(string)
+  description = "A map of tags to add to the autoscaling target"
+  default     = {}
+}

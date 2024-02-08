@@ -34,6 +34,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_appautoscaling_policy_name"></a> [appautoscaling\_policy\_name](#input\_appautoscaling\_policy\_name) | The name of the policy to use for the cluster | `string` | `null` | no |
 | <a name="input_autoscaling_enabled"></a> [autoscaling\_enabled](#input\_autoscaling\_enabled) | To automatically expand your cluster's storage in response to increased usage, you can enable this. [More info](https://docs.aws.amazon.com/msk/latest/developerguide/msk-autoexpand.html) | `bool` | `true` | no |
+| <a name="input_autoscalling_target_tags"></a> [autoscalling\_target\_tags](#input\_autoscalling\_target\_tags) | A map of tags to add to the autoscaling target | `map(string)` | `{}` | no |
 | <a name="input_broker_instance_type"></a> [broker\_instance\_type](#input\_broker\_instance\_type) | The instance type to use for the Kafka brokers | `string` | n/a | yes |
 | <a name="input_broker_per_zone"></a> [broker\_per\_zone](#input\_broker\_per\_zone) | Number of Kafka brokers per zone | `number` | `1` | no |
 | <a name="input_broker_volume_size"></a> [broker\_volume\_size](#input\_broker\_volume\_size) | The size in GiB of the EBS volume for the data drive on each broker node | `number` | `1000` | no |
