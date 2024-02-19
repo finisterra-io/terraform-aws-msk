@@ -9,6 +9,7 @@ resource "aws_msk_configuration" "config" {
 
   lifecycle {
     create_before_destroy = true
+    ignore_changes        = [latest_revision]
   }
 }
 
