@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.0.2](https://github.com/finisterra-io/terraform-aws-msk/compare/v1.0.1...v1.0.2) (2024-02-19)
+
+
+### Bug Fixes
+
+* drift ([3f597c4](https://github.com/finisterra-io/terraform-aws-msk/commit/3f597c4b72d39e3ae2e2a844aac64d86a7b96e7d))
+
 ### [1.0.1](https://github.com/finisterra-io/terraform-aws-msk/compare/v1.0.0...v1.0.1) (2024-02-08)
 
 
