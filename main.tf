@@ -13,6 +13,8 @@ resource "aws_msk_configuration" "config" {
   }
 }
 
+#It is defined in dynamic "logging_info"
+#tfsec:ignore:aws-msk-enable-logging
 resource "aws_msk_cluster" "default" {
   count = var.enabled ? 1 : 0
 
